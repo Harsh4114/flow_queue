@@ -1,5 +1,6 @@
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+library flow_queue;
+
+export 'core/flow_queue.dart';
+export 'enums/queue_priority.dart';
+export 'enums/queue_state.dart';
+export 'models/queue_task.dart';
