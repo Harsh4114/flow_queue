@@ -13,7 +13,7 @@ Designed for modern mobile app workflows like:
 * Background task execution
 
 ---
-![alt text](image.png)
+
 # Features
 
 ## Phase 1 Features
@@ -73,7 +73,7 @@ Add dependency:
 
 ```yaml
 dependencies:
-  flow_queue: ^1.0.0
+  flow_queue: ^latest version
 ```
 
 Run:
@@ -89,9 +89,10 @@ flutter pub get
 ## Initialize Queue
 
 ```dart
-final queue = FlowQueue("post_queue");
+// Create a queue instance with a unique name
+final queue = FlowQueue("post_queue"); // post_queue is the queue name
 
-await queue.init();
+await queue.init(); // Initializes the queue and SQLite storage
 ```
 
 ---
@@ -99,9 +100,12 @@ await queue.init();
 # Add Task
 
 ```dart
+// Add a task to the queue
+// Returns a unique task ID for tracking
 final id = await queue.add(
-  processName: "upload_post",
-  priority: QueuePriority.high,
+  processName: "upload_post", // A descriptive name for the task
+  priority: QueuePriority.high, // Set task priority
+  // The function to execute for this task
   function: () async {
 
     await api.uploadPost();
@@ -115,6 +119,7 @@ final id = await queue.add(
 # Listen Task State
 
 ```dart
+// Listen to state updates for the task
 queue.listen(id).listen((task) {
 
   print(task.state);
@@ -127,6 +132,7 @@ queue.listen(id).listen((task) {
 # Get Current State
 
 ```dart
+// Get the current state of the task
 final state = await queue.getState(id);
 ```
 
@@ -135,6 +141,7 @@ final state = await queue.getState(id);
 # Retry Failed Task
 
 ```dart
+// Retry a failed task
 final retryId = await queue.retry(id);
 ```
 
@@ -196,8 +203,9 @@ QueueState.failed
 ## LinkedIn-style Post Upload
 
 ```dart
+// Create a queue for post uploads
 final queue = FlowQueue("posts");
-
+// add a post upload task to the queue
 final id = await queue.add(
   processName: "publish_post",
   priority: QueuePriority.high,
@@ -207,19 +215,19 @@ final id = await queue.add(
 
   },
 );
-
+// Listen to task state updates
 queue.listen(id).listen((task) {
 
   switch(task.state) {
-
+// Task is waiting to be processed
     case QueueState.inProgress:
       print("Uploading...");
       break;
-
+// Task completed successfully
     case QueueState.success:
       print("Post Published");
       break;
-
+// Task failed after retries
     case QueueState.failed:
       print("Upload Failed");
       break;
@@ -238,11 +246,11 @@ queue.listen(id).listen((task) {
 Flow Queue supports multiple independent queues.
 
 ```dart
-final uploadQueue = FlowQueue("upload_queue");
+final uploadQueue = FlowQueue("upload_queue"); // Create an upload queue
 
-final paymentQueue = FlowQueue("payment_queue");
+final paymentQueue = FlowQueue("payment_queue"); // Create a payment queue
 
-final analyticsQueue = FlowQueue("analytics_queue");
+final analyticsQueue = FlowQueue("analytics_queue"); // Create an analytics queue
 ```
 
 Each queue creates:

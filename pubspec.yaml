@@ -1,10 +1,10 @@
 name: flow_queue
 description: "A Flutter package providing a persistent task queue with priorities."
-version: 1.1.0
+version: 1.2.0
 
 homepage: https://pub.dev/packages/flow_queue
-repository: https://github.com/yourusername/flow_queue
-issue_tracker: https://github.com/yourusername/flow_queue/issues
+repository: https://github.com/harsh4114/flow_queue
+issue_tracker: https://github.com/harsh4114/flow_queue/issues
 
 topics:
   - background
