@@ -6,8 +6,15 @@ The format is based on Keep a Changelog,
 and this project adheres to Semantic Versioning.
 
 ---
+## [1.2.0] Stable 
 
-## [1.1.0] - 2026-06-04
+### Improved
+
+* README documentation 
+* Change log formatting
+
+
+## [1.1.0] 
 
 ### Added
 
@@ -49,11 +56,8 @@ and this project adheres to Semantic Versioning.
 * Isolate execution planned for Phase 2
 
 `
-## [1.0.0] - 2026-06-04
+---
+## [1.0.0] 
 - Initial stable release.
 - Public API: `FlowQueue`, `QueueTask`, priority and state enums.
 - SQLite-backed persistence and task execution support.
-
-## Unreleased
-
-Future changes go here.
